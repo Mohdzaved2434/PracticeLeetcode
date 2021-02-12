@@ -1,0 +1,88 @@
+package com.ds.demo;
+
+public class TestClass {
+
+	public static void main(String[] args) {
+
+		ListNode l1 = new ListNode(9);
+		ListNode listNode2 = new ListNode(9);
+		l1.next = listNode2;
+		ListNode listNode3 = new ListNode(9);
+		listNode2.next = listNode3;
+		ListNode listNode92 = new ListNode(9);
+		listNode3.next = listNode92;
+		ListNode listNode93 = new ListNode(9);
+		listNode92.next = listNode93;
+		ListNode listNode94 = new ListNode(9);
+		listNode93.next = listNode94;
+		ListNode listNode95 = new ListNode(9);
+		listNode94.next = listNode95;
+		 
+		
+		
+		ListNode l3 = new ListNode(9);
+		ListNode listNodel31 = new ListNode(9);
+		l3.next = listNodel31;
+		ListNode listNodel32 = new ListNode(9);
+		listNodel31.next = listNodel32;
+		ListNode listNodel33 = new ListNode(9);
+		listNodel32.next = listNodel33;
+ 
+		 
+		ListNode addTwoNumbers = addTwoNumbers(l1, l3);
+		ListNode next = addTwoNumbers;
+		while (next != null) {
+			System.out.println(next.val);
+			next = next.next;
+		}
+	}
+
+	private static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+		ListNode head = null;
+		ListNode tempTail = null;
+		int carry = 0;
+
+		while (l1 != null || l2 != null) {
+
+			int sum = carry;
+			
+			if (l1 != null) {
+				sum  += l1.val;
+				l1 = l1.next;
+			}
+			if (l2 != null) {
+				sum  += l2.val;
+				l2 = l2.next;
+			}
+			carry = sum / 10;
+			ListNode node = new ListNode(sum % 10);
+			if (tempTail == null) {
+				tempTail= head = node;
+			} else {
+				tempTail.next = node;
+				tempTail = node;
+			}
+		}
+		if (carry > 0) {
+			tempTail.next = new ListNode(carry);
+		}
+		return head;
+	}
+}
+
+class ListNode {
+	int val;
+	ListNode next;
+
+	ListNode() {
+	}
+
+	ListNode(int val) {
+		this.val = val;
+	}
+
+	ListNode(int val, ListNode next) {
+		this.val = val;
+		this.next = next;
+	}
+}
